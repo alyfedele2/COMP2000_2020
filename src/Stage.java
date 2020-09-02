@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.util.*;
 
 public class Stage {
-    Grid grid;
-    ArrayList<Actor> actors;
+    static Grid grid;
+    static ArrayList<Actor> actors;
     List<Cell> cellOverlay;
     Optional<Actor> actorInAction;
 
@@ -26,10 +26,17 @@ public class Stage {
         // do we have AI moves to make
         if (currentState == State.CPUMoving){
             for(Actor a: actors){
-                if (!a.isTeamRed()){
+                if (!a.isTeamRed()){ //Controls AI!!
+                    if(a.loc.row%2 == 0) { //if even row
+                        a.strategy = new moveRandom();
+                    } else { //if odd row
+                        a.strategy = new moveLeft();
+                    }
+                    a.moveStrategically();
+                    /*delete later (moved to moveRandom):
                     List<Cell> possibleLocs = getClearRadius(a.loc, a.moves);
                     int moveCPUChooses = (new Random()).nextInt(possibleLocs.size());
-                    a.setLocation(possibleLocs.get(moveCPUChooses));
+                    a.setLocation(possibleLocs.get(moveCPUChooses));*/
                 }
             }
             currentState = State.ChoosingActor;
@@ -65,7 +72,7 @@ public class Stage {
         }
     }
 
-    public List<Cell> getClearRadius(Cell from, int size){
+    public static List<Cell> getClearRadius(Cell from, int size){
         List<Cell> init = grid.getRadius(from, size);
         for(Actor a: actors){
             init.remove(a.loc);

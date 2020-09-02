@@ -9,6 +9,8 @@ public abstract class Actor {
     int turns;
     int moves;
 
+    Strategy strategy;
+
     public void paint(Graphics g){
         for(Polygon p: display){
             g.setColor(new Color(redness, 0f, 1f-redness));
@@ -22,10 +24,15 @@ public abstract class Actor {
 
     public boolean isTeamRed(){
         return redness >= 0.5;
-    }
+    } 
 
     public void setLocation(Cell loc){
         this.loc = loc;
         setPoly();
+    }
+
+    public void moveStrategically() {
+        strategy.movementStrategy(this);
+        //set it so it accesses moveRandom specifically (?)
     }
 }
