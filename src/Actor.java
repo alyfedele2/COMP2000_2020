@@ -33,6 +33,5 @@ public abstract class Actor {
 
     public void moveStrategically() {
         strategy.movementStrategy(this);
-        //set it so it accesses moveRandom specifically (?)
     }
 }

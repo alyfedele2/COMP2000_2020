@@ -33,10 +33,6 @@ public class Stage {
                         a.strategy = new moveLeft();
                     }
                     a.moveStrategically();
-                    /*delete later (moved to moveRandom):
-                    List<Cell> possibleLocs = getClearRadius(a.loc, a.moves);
-                    int moveCPUChooses = (new Random()).nextInt(possibleLocs.size());
-                    a.setLocation(possibleLocs.get(moveCPUChooses));*/
                 }
             }
             currentState = State.ChoosingActor;
