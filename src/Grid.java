@@ -1,7 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Color;
-import java.util.*;
+import java.util.*; //includes Iterator
 import java.util.function.Consumer;
 
 class Grid {
@@ -39,7 +39,7 @@ class Grid {
         }
     }
 
-    public Optional<Cell> cellAtPoint(Point p){
+    public Optional<Cell> cellAtPoint(Point p){ //!!?
         for(int i = 0; i < cells.length; i++){
             for(int j = 0; j < cells[i].length; j++){
                 if (cells[i][j].contains(p)){
@@ -55,7 +55,7 @@ class Grid {
      * returns `void`) and applies that consumer to each cell in the grid.
      * @param func The `Cell` to `void` function to apply at each spot.
      */
-    public void doToEachCell(Consumer<Cell> func){
+    public void doToEachCell(Consumer<Cell> func){ //!!?
         for(int i = 0; i < cells.length; i++){
             for(int j = 0; j < cells[i].length; j++){
                 func.accept(cells[i][j]);
@@ -63,7 +63,7 @@ class Grid {
         }
     }
 
-    public void paintOverlay(Graphics g, List<Cell> cells, Color colour){
+    public void paintOverlay(Graphics g, List<Cell> cells, Color colour){ //!!?
         g.setColor(colour);
         for(Cell c: cells){
             g.fillRect(c.x+2, c.y+2, c.width-4, c.height-4);
@@ -81,7 +81,7 @@ class Grid {
             cellAtColRow(colToLabel(i + 1), j).ifPresent(inRadius::add);
         }
 
-        for(Cell c: inRadius.toArray(new Cell[0])){
+        for(Cell c: inRadius.toArray(new Cell[0])){ //!!?
             inRadius.addAll(getRadius(c, size - 1));
         }
         return new ArrayList<Cell>(inRadius);
