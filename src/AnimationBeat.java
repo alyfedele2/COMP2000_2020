@@ -1,28 +1,35 @@
-
 public class AnimationBeat {
     private long started;
     private long a; // length of phase a
     private long b; // length of phase b
     private long c; // length of phase c
-    private static AnimationBeat beat; //Singleton
-    
-    private AnimationBeat(){ //Changed to private for Singleton implementation
+
+    private static AnimationBeat instance;
+   
+    private AnimationBeat(){
         started = System.currentTimeMillis();
-        this.a = 5000; //5 sec
-        this.b = 500; //1/2 sec
+        this.a = 5000;
+        this.b = 500;
         this.c = 500;
+    }
+
+    public static AnimationBeat getInstance(){
+        if (instance == null){
+            instance = new AnimationBeat();
+        }
+        return instance;
     }
 
     // returns which phase the animation is currently in
     public char inPhase(){
         long currTime = System.currentTimeMillis();
-        long rem = (currTime - started) % (a + b);
+        long rem = (currTime - started) % (a + b + c);
         if (rem > a + b){
-            return 'c'; //?
+            return 'c';
         } else if (rem > a) {
             return 'b';
         } else {
-            return 'c';
+            return 'a';
         }
     }
 
@@ -37,9 +44,6 @@ public class AnimationBeat {
         } else {
             return rem*100/a;
         }
-    }
 
-    public static AnimationBeat getBeat() { //Singleton
-        return beat;
     }
 }

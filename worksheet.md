@@ -265,13 +265,13 @@ public class AnimationBeat {
     // returns which phase the animation is currently in
     public char inPhase(){
         long currTime = System.currentTimeMillis();
-        long rem = (currTime - started) % (a + b);
+        long rem = (currTime - started) % (a + b + c);
         if (rem > a + b){
             return 'c';
         } else if (rem > a) {
             return 'b';
         } else {
-            return 'c';
+            return 'a';
         }
     }
 
@@ -291,6 +291,6 @@ public class AnimationBeat {
 }
 ~~~~~
 
-Notice that is implmenents a beat with three phases (`a`, `b`, and `c`) and that phase `a` goes for 5 seconds while phases `b` and `c` go for half-a second each.
+Notice that it implements a beat with three phases (`a`, `b`, and `c`) and that phase `a` goes for 5 seconds while phases `b` and `c` go for half-a second each.
 
 Your task is to incorporate this code into the project _using the most appropriate design pattern_ to do so.  You will need to make some changes to your colleague's code to ensure you match the pattern.  Then incorporate the animation beat somewhere in the application to demonstrate that it is working.
