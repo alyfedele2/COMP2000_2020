@@ -40,4 +40,8 @@ public abstract class Actor {
     public void moveStrategically() {
         strategy.movementStrategy(this);
     }
+
+    /*public void beatColourChange() {
+        colour = 
+    }*/
 }

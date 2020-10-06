@@ -67,6 +67,11 @@ public class Stage {
             g.drawString("strat:", 730, yloc + 39 + 70*i);
             g.drawString(a.strat.toString(), 840, yloc + 39 + 70*i);
         }
+        //beat Colour-change
+        AnimationBeat beat = AnimationBeat.getBeat();
+        if(beat.inPhase()!='a' && beat.phaseCompletion() <50) {
+            //Maybe write in area where colour matters?
+        }
     }
 
     public static List<Cell> getClearRadius(Cell from, int size){
